@@ -24,4 +24,12 @@ wss.on('connection', function(ws) {
         console.log('websocket connection close');
         clearInterval(id);
     });
+
+    ws.on('message', function(data, flags) {
+        ws.send('pong: ' + data);
+        // flags.binary will be set if a binary data is received
+        // flags.masked will be set if the data was masked
+    });
+
 });
+
