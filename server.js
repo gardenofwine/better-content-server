@@ -13,23 +13,50 @@ console.log('http server listening on %d', port);
 
 var wss = new WebSocketServer({server: server});
 console.log('websocket server created');
-wss.on('connection', function(ws) {
-    var id = setInterval(function() {
-        ws.send(JSON.stringify(new Date()), function() {  });
-    }, 1000);
 
+var nativeApp = null;
+var webClient = null;
+
+wss.on('connection', function(ws) {
     console.log('websocket connection open');
 
     ws.on('close', function() {
         console.log('websocket connection close');
-        clearInterval(id);
+        if (ws == nativeApp){
+            nativeApp = null;
+        }
+        if (ws == webClient){
+            webClient = null;
+        }
     });
 
     ws.on('message', function(data, flags) {
-        ws.send('pong: ' + data);
         // flags.binary will be set if a binary data is received
         // flags.masked will be set if the data was masked
-    });
+        console.log('websocket received message ' + data);
+        var message = JSON.parse(data);
+        if (message.type == 'register'){
+            if (message.data == 'nativeApp'){
+                nativeApp = ws;
+            }
+            if (message.data == 'webClient'){
+                webClient = ws;
+            }
+        }
 
+        if (message.type == 'labelMap'){
+            if (ws == nativeApp){
+                if (webClient){
+                    webClient.send(data);
+                }
+            }
+            if (ws == webClient){
+                if (nativeApp){
+                    nativeApp.send(data);
+                }
+            }
+
+        }
+    });
 });
 

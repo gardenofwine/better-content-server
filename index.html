@@ -22,8 +22,12 @@
       var ws = new WebSocket(host);
       ws.onmessage = function (event) {
         var li = document.createElement('li');
-        li.innerHTML = JSON.parse(event.data);
+        li.innerHTML = JSON.stringify(event.data);
         document.querySelector('#pings').appendChild(li);
+      };
+
+      ws.onopen = function (event) {
+          ws.send(JSON.stringify({'type':'register', 'data':'webClient'}));
       };
     </script>
   </head>
