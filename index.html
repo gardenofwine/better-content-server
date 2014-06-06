@@ -21,9 +21,11 @@
       var host = location.origin.replace(/^http/, 'ws')
       var ws = new WebSocket(host);
       ws.onmessage = function (event) {
+          console.log("Received Message");
+          console.log(event);
         var li = document.createElement('li');
         li.innerHTML = JSON.stringify(event.data);
-        document.querySelector('#pings').appendChild(li);
+        document.querySelector('#labels').appendChild(li);
       };
 
       ws.onopen = function (event) {
@@ -32,7 +34,7 @@
     </script>
   </head>
   <body>
-    <h1>Pings</h1>
-    <ul id='pings'></ul>
+    <h1>Labels</h1>
+    <ul id='labels'></ul>
   </body>
 </html>

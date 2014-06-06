@@ -47,12 +47,12 @@ wss.on('connection', function(ws) {
         if (message.type == 'labelMap'){
             if (ws == nativeApp){
                 if (webClient){
-                    webClient.send(data);
+                    webClient.send(JSON.stringify(message.data));
                 }
             }
             if (ws == webClient){
                 if (nativeApp){
-                    nativeApp.send(data);
+                    nativeApp.send(JSON.stringify(message.data));
                 }
             }
 
