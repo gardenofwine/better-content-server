@@ -18,23 +18,50 @@
     </style>
 
     <script>
+      var labelsMap;
       var host = location.origin.replace(/^http/, 'ws')
       var ws = new WebSocket(host);
       ws.onmessage = function (event) {
-          console.log("Received Message");
-          console.log(event);
-        var li = document.createElement('li');
-        li.innerHTML = JSON.stringify(event.data);
-        document.querySelector('#labels').appendChild(li);
+        console.log("Received Message");
+        console.log(event);
+        labelsMap = JSON.parse(event.data);
+
+          document.querySelector('#labels').innerHTML = '';
+        for (var i = 0 ; i < labelsMap.length ; i++) {
+            var input = document.createElement('input');
+            input.setAttribute("type", "text");
+            input.setAttribute("value", labelsMap[i].text);
+            input.setAttribute("key", labelsMap[i].key);
+            var li = document.createElement('li');
+            li.appendChild(input);
+            document.querySelector('#labels').appendChild(li);
+        }
       };
 
       ws.onopen = function (event) {
           ws.send(JSON.stringify({'type':'register', 'data':'webClient'}));
       };
+
+      sendLabels = function(form){
+          var newLabelMap = [];
+
+          for (var i = 0 ; i < form.elements.length ; i++) {
+              var key = form.elements[i].getAttribute('key')
+              if (key != null){
+                  var value = form.elements[i].value;
+                  newLabelMap.push({'key':key, 'text':value})
+              }
+          }
+          ws.send(JSON.stringify({'type':'labelMap', 'data': JSON.stringify(newLabelMap)}));
+      }
     </script>
   </head>
   <body>
     <h1>Labels</h1>
-    <ul id='labels'></ul>
+    <form name="labelsForm" >
+        <ul id='labels'>
+        </ul>
+        <input TYPE="button" NAME="button" Value="Click" onClick="sendLabels(this.form)">
+    </form>
   </body>
 </html>
