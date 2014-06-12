@@ -15,6 +15,10 @@
       ul li {
         line-height: 1.4;
       }
+
+      .labelText{
+          width :100%;
+      }
     </style>
 
     <script>
@@ -32,6 +36,7 @@
             input.setAttribute("type", "text");
             input.setAttribute("value", labelsMap[i].text);
             input.setAttribute("key", labelsMap[i].key);
+            input.setAttribute("class", "labelText");
             var li = document.createElement('li');
             li.appendChild(input);
             document.querySelector('#labels').appendChild(li);
@@ -52,7 +57,7 @@
                   newLabelMap.push({'key':key, 'text':value})
               }
           }
-          ws.send(JSON.stringify({'type':'labelMap', 'data': JSON.stringify(newLabelMap)}));
+          ws.send(JSON.stringify({'type':'labelMap', 'data': newLabelMap}));
       }
     </script>
   </head>
