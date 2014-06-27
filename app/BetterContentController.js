@@ -5,6 +5,10 @@ function BetterContentController(){
 BetterContentController.prototype.registerListener = function(client, func) {
     this.listeners[client] = func;
 }
+BetterContentController.prototype.removeListener = function(client) {
+    this.listeners[client] = nil;
+}
+
 BetterContentController.prototype.onMessage = function(originator, message) {
     if (originator === module.exports.NATIVE_APP){
         if (this.listeners[module.exports.WEB_CLIENT]){
