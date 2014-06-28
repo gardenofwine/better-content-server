@@ -1,13 +1,6 @@
-# Node.js Websocket Test
+# BetterContent Server and Web Client
 
-A tiny demo using the [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.
-
-# Running Locally
-
-``` bash
-npm install
-foreman start
-```
+Coordinating between an iOS BetterContent enabled application to the BetterContent web application. Communication is done via [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.
 
 # Running on Heroku
 

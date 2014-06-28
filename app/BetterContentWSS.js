@@ -22,6 +22,24 @@ function BetterContentWSS(webSocketServer) {
         });
     });
 
+    function clientRegistered(webSocket, message) {
+        if (message === BetterContentController.NATIVE_APP) {
+            nativeApp = webSocket;
+            betterContent.registerListener(BetterContentController.WEB_CLIENT, function (jsonMessage) {
+                console.log('web client message listener');
+                nativeApp.send(JSON.stringify(jsonMessage));
+            })
+
+        }
+        if (message === BetterContentController.WEB_CLIENT) {
+            webClient = webSocket;
+            betterContent.registerListener(BetterContentController.NATIVE_APP, function (jsonMessage) {
+                console.log('native app message listener');
+                webClient.send(JSON.stringify(jsonMessage));
+            })
+        }
+    }
+
     function webSocketClosed(ws) {
         console.log('websocket connection close');
         if (ws === nativeApp) {
@@ -31,24 +49,6 @@ function BetterContentWSS(webSocketServer) {
         if (ws === webClient) {
             webClient = null;
             betterContent.removeListener(BetterContentController.WEB_CLIENT);
-        }
-    }
-
-    function clientRegistered(client, message) {
-        if (message === BetterContentController.NATIVE_APP) {
-            nativeApp = client;
-            betterContent.registerListener(BetterContentController.WEB_CLIENT, function (jsonMessage) {
-                console.log('web client message listener');
-                nativeApp.send(JSON.stringify(jsonMessage));
-            })
-
-        }
-        if (message === BetterContentController.WEB_CLIENT) {
-            webClient = client;
-            betterContent.registerListener(BetterContentController.NATIVE_APP, function (jsonMessage) {
-                console.log('native app message listener');
-                webClient.send(JSON.stringify(jsonMessage));
-            })
         }
     }
 
