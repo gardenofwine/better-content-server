@@ -6,7 +6,7 @@ BetterContentController.prototype.registerListener = function(client, func) {
     this.listeners[client] = func;
 }
 BetterContentController.prototype.removeListener = function(client) {
-    this.listeners[client] = nil;
+    this.listeners[client] = null;
 }
 
 BetterContentController.prototype.onMessage = function(originator, message) {
