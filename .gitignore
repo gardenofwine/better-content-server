@@ -4,7 +4,10 @@
 # Node
 node_modules
 npm-debug.log
+npm-install-*.sh
 
 # Mac things
 .idea/**
 .DS_Store
+
+
