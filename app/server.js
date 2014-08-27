@@ -1,11 +1,11 @@
 var WebSocketServer = require('ws').Server;
 var http = require('http');
 var express = require('express');
-var BetterContentWebSocketServer= require('./app/BetterContentWSS');
+var BetterContentWebSocketServer= require('./BetterContentWSS');
 var port = process.env.PORT || 5000;
 
 var app = express();
-app.use(express.static(__dirname + '/'));
+app.use(express.static('wwwroot'));
 
 var server = http.createServer(app);
 server.listen(port);
