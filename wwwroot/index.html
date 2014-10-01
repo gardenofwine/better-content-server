@@ -45,6 +45,15 @@
 
       ws.onopen = function (event) {
           ws.send(JSON.stringify({'type':'register', 'data':'webClient'}));
+
+          timeout();
+
+          function timeout() {
+              setTimeout(function () {
+                  ws.send(JSON.stringify({'type':'ping'}));
+                  timeout();
+              }, 10000);
+          }
       };
 
       sendLabels = function(form){

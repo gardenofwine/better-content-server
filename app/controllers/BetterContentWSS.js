@@ -14,11 +14,12 @@ function BetterContentWSS(webSocketServer) {
         ws.on('message', function (data, flags) {
             // flags.binary will be set if a binary data is received
             // flags.masked will be set if the data was masked
-            console.log('websocket received message' + data);
+            console.log('websocket received message ' + data);
             var message = JSON.parse(data);
 
             if (message.type === 'register') { clientRegistered(ws, message.data); }
             if (message.type === 'labelMap') { clientMessaged(ws, message.data); }
+            if (message.type === 'ping') { /*pong?*/ }
         });
     });
 
