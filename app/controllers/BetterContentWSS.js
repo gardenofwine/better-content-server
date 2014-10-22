@@ -7,6 +7,9 @@ function BetterContentWSS(webSocketServer) {
     var nativeApp = null;
     var webClient = null;
 
+    var lastNativeMessage = null;
+    var lastWebClientMessage = null;
+
     wss.on('connection', function (ws) {
         console.log('websocket connection open');
         ws.on('close', function () { webSocketClosed(ws) });
@@ -14,7 +17,6 @@ function BetterContentWSS(webSocketServer) {
         ws.on('message', function (data, flags) {
             // flags.binary will be set if a binary data is received
             // flags.masked will be set if the data was masked
-            console.log('websocket received message ' + data);
             var message = JSON.parse(data);
 
             if (message.type === 'register') { clientRegistered(ws, message.data); }
@@ -31,6 +33,9 @@ function BetterContentWSS(webSocketServer) {
                 nativeApp.send(JSON.stringify(jsonMessage));
             })
 
+            if (lastWebClientMessage !== null) {
+                nativeApp.send(JSON.stringify(lastWebClientMessage));
+            }
         }
         if (message === BetterContentController.WEB_CLIENT) {
             webClient = webSocket;
@@ -38,6 +43,9 @@ function BetterContentWSS(webSocketServer) {
                 console.log('native app message listener');
                 webClient.send(JSON.stringify(jsonMessage));
             })
+            if (lastNativeMessage!== null) {
+                webClient.send(JSON.stringify(lastNativeMessage));
+            }
         }
     }
 
@@ -54,11 +62,14 @@ function BetterContentWSS(webSocketServer) {
     }
 
     function clientMessaged(client, message) {
+        console.log('websocket received message ' + JSON.stringify(message));
         if (client == nativeApp) {
-            betterContent.onMessage(BetterContentController.WEB_CLIENT, message)
+            lastNativeMessage = message;
+            betterContent.onMessage(BetterContentController.NATIVE_APP, message);
         }
         if (client == webClient) {
-            betterContent.onMessage(BetterContentController.NATIVE_APP, message)
+            lastWebClientMessage = message;
+            betterContent.onMessage(BetterContentController.WEB_CLIENT, message);
         }
     }
 }

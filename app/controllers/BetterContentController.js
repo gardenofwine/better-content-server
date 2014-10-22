@@ -11,13 +11,13 @@ BetterContentController.prototype.removeListener = function(client) {
 
 BetterContentController.prototype.onMessage = function(originator, message) {
     if (originator === module.exports.NATIVE_APP){
-        if (this.listeners[module.exports.WEB_CLIENT]){
-            this.listeners[module.exports.WEB_CLIENT](message);
+        if (this.listeners[module.exports.NATIVE_APP]){
+            this.listeners[module.exports.NATIVE_APP](message);
         }
     }
     if (originator === module.exports.WEB_CLIENT){
-        if (this.listeners[module.exports.NATIVE_APP]){
-            this.listeners[module.exports.NATIVE_APP](message);
+        if (this.listeners[module.exports.WEB_CLIENT]){
+            this.listeners[module.exports.WEB_CLIENT](message);
         }
     }
 }
