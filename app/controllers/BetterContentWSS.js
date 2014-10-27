@@ -7,8 +7,7 @@ function BetterContentWSS(webSocketServer) {
     var nativeApp = null;
     var webClient = null;
 
-    var lastNativeMessage = null;
-    var lastWebClientMessage = null;
+    var lastClientMessage = null
 
     wss.on('connection', function (ws) {
         console.log('websocket connection open');
@@ -34,8 +33,8 @@ function BetterContentWSS(webSocketServer) {
                 nativeApp.send(JSON.stringify(jsonMessage));
             })
 
-            if (lastWebClientMessage !== null) {
-                nativeApp.send(JSON.stringify(lastWebClientMessage));
+            if (lastClientMessage !== null) {
+                nativeApp.send(JSON.stringify(lastClientMessage));
             }
         }
         if (message === BetterContentController.WEB_CLIENT) {
@@ -45,8 +44,8 @@ function BetterContentWSS(webSocketServer) {
                 console.log('native app message listener');
                 webClient.send(JSON.stringify(jsonMessage));
             })
-            if (lastNativeMessage!== null) {
-                webClient.send(JSON.stringify(lastNativeMessage));
+            if (lastClientMessage !== null) {
+                webClient.send(JSON.stringify(lastClientMessage));
             }
         }
     }
@@ -67,14 +66,13 @@ function BetterContentWSS(webSocketServer) {
     function clientMessaged(client, message) {
         if (client == nativeApp) {
             console.log('received message from native ' + JSON.stringify(message));
-            lastNativeMessage = message;
             betterContent.onMessage(BetterContentController.NATIVE_APP, message);
         }
         if (client == webClient) {
             console.log('received message from webClient ' + JSON.stringify(message));
-            lastWebClientMessage = message;
             betterContent.onMessage(BetterContentController.WEB_CLIENT, message);
         }
+        lastClientMessage = message;
     }
 }
 
