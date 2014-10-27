@@ -16,6 +16,11 @@ gulp.task('stylesheets', function() {
         .pipe(gulp.dest('./wwwroot/stylesheets/'));
 });
 
-gulp.task('default', ['templates', 'stylesheets'], function() {
+gulp.task('scripts', function() {
+    gulp.src('./source/javascript/*.js')
+        .pipe(gulp.dest('./wwwroot/javascript/'));
+});
+
+gulp.task('default', ['templates', 'scripts', 'stylesheets'], function() {
     // place code for your default task here
 });
