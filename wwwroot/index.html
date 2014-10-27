@@ -10,6 +10,9 @@
           console.log("Received Message");
           console.log(event);
           labelsMap = JSON.parse(event.data);
+          labelsMap = labelsMap.sort(function(el1, el2){
+              return el1.attributes.frame.Y - el2.attributes.frame.Y;
+          });
           document.querySelector('#labels').innerHTML = '';
           for (var i = 0 ; i < labelsMap.length ; i++) {
               var input = document.createElement('input');
