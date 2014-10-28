@@ -13,6 +13,11 @@ ul li {
     line-height: 1.4;
 }
 
+.element {
+    position: absolute;
+    text-overflow: clip;
+    padding-left: 200px;
+}
 .labelText{
     width :100%;
 }

@@ -5,17 +5,30 @@ ws.onmessage = function (event) {
     console.log("Received Message");
     console.log(event);
     labelsMap = JSON.parse(event.data);
-    document.querySelector('#labels').innerHTML = '';
+    var elementsDiv = document.querySelector('#labels')
+    elementsDiv.innerHTML = '';
+//    document.querySelector('#labels').innerHTML = '';
     for (var i = 0 ; i < labelsMap.length ; i++) {
-        var input = document.createElement('input');
-        input.setAttribute("type", "text");
-        input.setAttribute("value", labelsMap[i].attributes.text);
-        input.setAttribute("key", labelsMap[i].key);
-        input.setAttribute("class", "labelText");
-        var li = document.createElement('li');
-        li.appendChild(input);
-        document.querySelector('#labels').appendChild(li);
+        var element = document.createElement('div');
+        var frame = labelsMap[i].attributes.frame;
+        element.innerHTML = labelsMap[i].attributes.text;
+        element.setAttribute('class', 'element');
+        element.setAttribute('contenteditable', true);
+        var positionStyle = "top:" + frame.Y + "px; left:" + frame.X + "px; width:" + frame.Width + "px; height:" + frame.Height + "px;";
+        element.setAttribute('style', positionStyle);
+        elementsDiv.appendChild(element);
     }
+
+//    for (var i = 0 ; i < labelsMap.length ; i++) {
+//        var input = document.createElement('input');
+//        input.setAttribute("type", "text");
+//        input.setAttribute("value", labelsMap[i].attributes.text);
+//        input.setAttribute("key", labelsMap[i].key);
+//        input.setAttribute("class", "labelText");
+//        var li = document.createElement('li');
+//        li.appendChild(input);
+//        document.querySelector('#labels').appendChild(li);
+//    }
 };
 ws.onopen = function (event) {
     ws.send(JSON.stringify({'type':'register', 'data':'webClient'}));
