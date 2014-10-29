@@ -15,6 +15,7 @@ ul li {
 
 .element {
     position: absolute;
+    overflow: hidden;
     text-overflow: clip;
     padding-left: 200px;
 }
