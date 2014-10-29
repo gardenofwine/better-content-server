@@ -16,3 +16,4 @@ heroku open
  1. Support text areas (refactor UIView handling)
  1. only send to client modified labels
  1. refactor
+ 1. display an iPhone image around the content
