@@ -32,6 +32,7 @@ gulp.task('scripts', function() {
 gulp.task('watch', function(){
     gulp.watch('./source/javascript/*.js', ['scripts']);
     gulp.watch('./source/stylesheets/*.css', ['stylesheets']);
+    gulp.watch('./source/*.jade', ['templates']);
 });
 
 gulp.task('default', ['templates', 'scripts', 'stylesheets', 'watch', 'develop'], function() {
