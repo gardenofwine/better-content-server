@@ -17,7 +17,7 @@ var setupWebsocket = function(){
         console.log("Received Message");
         console.log(event);
         labelsMap = JSON.parse(event.data);
-        var elementsDiv = document.querySelector('#labels')
+        var elementsDiv = document.querySelector('#nativeContent')
         elementsDiv.innerHTML = '';
         for (var i = 0 ; i < labelsMap.length ; i++) {
             var element = document.createElement('div');
