@@ -24,6 +24,11 @@ gulp.task('stylesheets', function() {
         .pipe(gulp.dest('./wwwroot/stylesheets/'));
 });
 
+gulp.task('images', function() {
+    gulp.src('./source/images/*.*')
+        .pipe(gulp.dest('./wwwroot/images/'));
+});
+
 gulp.task('scripts', function() {
     gulp.src('./source/javascript/*.js')
         .pipe(gulp.dest('./wwwroot/javascript/'));
@@ -33,8 +38,9 @@ gulp.task('watch', function(){
     gulp.watch('./source/javascript/*.js', ['scripts']);
     gulp.watch('./source/stylesheets/*.css', ['stylesheets']);
     gulp.watch('./source/*.jade', ['templates']);
+    gulp.watch('./source/images/*.*', ['images']);
 });
 
-gulp.task('default', ['templates', 'scripts', 'stylesheets', 'watch', 'develop'], function() {
+gulp.task('default', ['templates', 'scripts', 'stylesheets', 'images', 'watch', 'develop'], function() {
     // place code for your default task here
 });

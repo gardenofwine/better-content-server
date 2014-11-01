@@ -3,11 +3,25 @@ body {
     padding: 15px;
 }
 
+#container {
+    position :relative;
+}
+
+#iphoneImage{
+    height: 748px;
+    width: 382px;
+    position: absolute;
+    top:0px;
+    left:0px;
+}
+
 #nativeContent{
     height: 480px;
     width: 320px;
     border: solid;
-    position: relative;
+    position: absolute;
+    top:131px;
+    left:31px;
 }
 
 .element {
