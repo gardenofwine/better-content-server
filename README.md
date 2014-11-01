@@ -1,8 +1,22 @@
 # BetterContent Server and Web Client
 
-Coordinating between an iOS BetterContent enabled application to the BetterContent web application. Communication is done via [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.
+![Demo](BetterContentDemo.gif)
 
-# Running on Heroku
+__Work in progress.__
+
+Dead simple webpage to live edit any iOS application:
+ - install the [BetterContent cocoa pod](https://github.com/gardenofwine/better-content-client-ios) in your native app.
+ - run this node server locally or in Heroku
+ - launch your app and browser.
+ - play with the apps content to you satisfaction.
+
+## Implementation details
+
+This repository contains the code for:
+ 1. The server coordinating between an iOS BetterContent enabled application to the BetterContent web application. (Communication is done via [einaros/ws](http://einaros.github.io/ws/) WebSockets implementation.)
+ 1. The BetterContent web application.
+
+## Running on Heroku
 
 ``` bash
 heroku create
@@ -11,9 +25,9 @@ git push heroku master
 heroku open
 ```
 
-# TODO
+## TODOS
 
  1. Support text areas (refactor UIView handling)
- 1. only send to client modified labels
  1. refactor
- 1. display an iPhone image around the content
+ 1. Support multiple dimesion iOS (iPads, iPhone5, iPhone6)
+ 1. Create an Heroku template for easy cloning.
