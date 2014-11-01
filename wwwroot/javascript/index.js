@@ -55,7 +55,7 @@ var setupWebsocket = function(){
 
     sendLabel = function(element){
         var newLabelMap = [];
-        var value = element.innerHTML;
+        var value = element.innerText;
         newLabelMap.push({'key':element.getAttribute('key'), 'attributes':{'text':value}});
         ws.send(JSON.stringify({'type':'labelMap', 'data': newLabelMap}));
     }
