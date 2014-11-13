@@ -67,12 +67,12 @@ function BetterContentWSS(webSocketServer) {
         if (client == nativeApp) {
             console.log('received message from native ' + JSON.stringify(message));
             betterContent.onMessage(BetterContentController.NATIVE_APP, message);
+            lastClientMessage = message;
         }
         if (client == webClient) {
             console.log('received message from webClient ' + JSON.stringify(message));
             betterContent.onMessage(BetterContentController.WEB_CLIENT, message);
         }
-        lastClientMessage = message;
     }
 }
 
