@@ -66,11 +66,15 @@ BetterContent.Components.label = {
         element.setAttribute('contenteditable', true);
         element.setAttribute("key", component.key);
 
-        var positionStyle =
-            "top:" + frame.Y + "px; left:" + frame.X + "px; width:" + frame.Width + "px; height:" + frame.Height + "px;" +
-            "font-size:" + font.pointSize + "px;";
-        element.setAttribute('style', positionStyle);
+        element.style.top = frame.Y + 'px';
+        element.style.left = frame.X + 'px';
+        element.style.width = frame.Width + 'px';
+        element.style.height = frame.Height + 'px';
+        element.style.fontSize = (font.pointSize * 0.85) + 'px';
+        element.style.color = component.attributes.color;
+
         elementsDiv.appendChild(element);
+
 
         element.addEventListener("input", function (event) {
             console.log(event.srcElement);
@@ -98,9 +102,10 @@ BetterContent.Components.image = {
         element.setAttribute('class', 'element image');
         element.setAttribute("key", component.key);
 
-        var positionStyle =
-            "top:" + frame.Y + "px; left:" + frame.X + "px; width:" + frame.Width + "px; height:" + frame.Height + "px;";
-        element.setAttribute('style', positionStyle);
+        element.style.top = frame.Y + 'px';
+        element.style.left = frame.X + 'px';
+        element.style.width = frame.Width + 'px';
+        element.style.height = frame.Height + 'px';
         elementsDiv.appendChild(element);
     }
 }
