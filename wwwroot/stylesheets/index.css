@@ -23,6 +23,7 @@ body {
     position: absolute;
     top:131px;
     left:31px;
+    background-color: gray;
 }
 
 .element {
