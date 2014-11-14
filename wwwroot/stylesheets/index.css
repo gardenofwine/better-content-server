@@ -13,6 +13,7 @@ body {
     position: absolute;
     top:0px;
     left:0px;
+    z-index: 10;
 }
 
 #nativeContent{
@@ -28,8 +29,4 @@ body {
     position: absolute;
     overflow: hidden;
     text-overflow: clip;
-}
-
-.element.image{
-    border : 1px solid #ddd;
 }

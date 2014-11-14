@@ -37,7 +37,7 @@ BetterContent.App.prototype.onClose = function() {
 BetterContent.App.prototype.keepAlive = function(){
     var that = this;
     setTimeout(function () {
-        that.ws.send(JSON.stringify({'type': 'ping'}));
+        BetterContent.ws.send(JSON.stringify({'type': 'ping'}));
         that.keepAlive();
     }, 5000);
 }
@@ -86,7 +86,8 @@ BetterContent.Components.label = {
 
 BetterContent.Components.image = {
     draw: function (component, elementsDiv) {
-        var element = document.createElement('div');
+        var element = new Image();
+        element.src = 'data:image/png;base64,' + component.attributes.image;
         var frame = component.attributes.frame;
 
         element.setAttribute('class', 'element image');
