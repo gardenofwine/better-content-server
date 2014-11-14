@@ -29,3 +29,7 @@ body {
     overflow: hidden;
     text-overflow: clip;
 }
+
+.element.image{
+    border : 1px solid #ddd;
+}

@@ -80,10 +80,24 @@ BetterContent.Components.label = {
             var value = element.innerText;
             newLabelMap.push({'key': element.getAttribute('key'), 'attributes': {'text': value}});
             BetterContent.ws.send(JSON.stringify({'type': 'labelMap', 'data': newLabelMap}));
-        }
+        };
     }
 }
 
+BetterContent.Components.image = {
+    draw: function (component, elementsDiv) {
+        var element = document.createElement('div');
+        var frame = component.attributes.frame;
+
+        element.setAttribute('class', 'element image');
+        element.setAttribute("key", component.key);
+
+        var positionStyle =
+            "top:" + frame.Y + "px; left:" + frame.X + "px; width:" + frame.Width + "px; height:" + frame.Height + "px;";
+        element.setAttribute('style', positionStyle);
+        elementsDiv.appendChild(element);
+    }
+}
 
 var app = new BetterContent.App();
 app.setupWebSocket();
