@@ -17,6 +17,7 @@ body {
 }
 
 #nativeContent{
+    overflow: hidden;
     height: 480px;
     width: 320px;
     border: solid;

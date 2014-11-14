@@ -1,7 +1,8 @@
 var BetterContent = {};
 
 BetterContent.config = {
-    host: location.origin.replace(/^http/, 'ws')
+    host: location.origin.replace(/^http/, 'ws'),
+    nativeAppSize : null
 }
 BetterContent.App = function(){};
 
@@ -10,6 +11,7 @@ BetterContent.App.prototype.onMessage = function(event){
     console.log(event);
 
     var nativeContent = JSON.parse(event.data);
+    BetterContent.config.nativeAppSize = {"width": 320, "height":480}
     var elementsDiv = document.querySelector('#nativeContent')
     elementsDiv.innerHTML = '';
     for (var i = 0; i < nativeContent.length; i++) {
@@ -86,6 +88,9 @@ BetterContent.Components.label = {
 
 BetterContent.Components.image = {
     draw: function (component, elementsDiv) {
+        if (component.attributes.hidden || component.attributes.image === ""){
+            return;
+        }
         var element = new Image();
         element.src = 'data:image/png;base64,' + component.attributes.image;
         var frame = component.attributes.frame;
