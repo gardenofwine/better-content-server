@@ -71,7 +71,7 @@ BetterContent.Components.label = {
         element.style.width = frame.Width + 'px';
         element.style.height = frame.Height + 'px';
         element.style.fontSize = (font.pointSize * 0.85) + 'px';
-        element.style.color = component.attributes.color;
+        element.style.color = font.color;
 
         elementsDiv.appendChild(element);
 
