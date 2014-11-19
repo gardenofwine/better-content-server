@@ -57,6 +57,9 @@ BetterContent.Components = {}
 
 BetterContent.Components.label = {
     draw: function(component, elementsDiv){
+        if (component.attributes.hidden){
+            return;
+        }
         var element = document.createElement('div');
         var frame = component.attributes.frame;
         var font = component.attributes.font;
