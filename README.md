@@ -1,6 +1,6 @@
 # BetterContent Server and Web Client
 
-![Demo](invalidate_BetterContentDemo.gif)
+![Demo](BetterContentDemo.gif)
 
 __Work in progress.__
 
