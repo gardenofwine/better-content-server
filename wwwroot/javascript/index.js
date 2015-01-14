@@ -24,7 +24,8 @@ BetterContent.App.prototype.onMessage = function(event){
 }
 
 BetterContent.App.prototype.onOpen = function() {
-    this.ws.send(JSON.stringify({'type': 'register', 'data': 'webClient'}));
+    var tempAppName = 'temp';
+    this.ws.send(JSON.stringify({'type': 'register', 'data': {'app':'webClient', 'appName': tempAppName}}));
     this.keepAlive();
 }
 
@@ -80,7 +81,6 @@ BetterContent.Components.label = {
 
 
         element.addEventListener("input", function (event) {
-            console.log(event.srcElement);
             sendLabel(event.srcElement);
         }, false);
 
@@ -88,7 +88,7 @@ BetterContent.Components.label = {
             var newLabelMap = [];
             var value = element.innerText;
             newLabelMap.push({'key': element.getAttribute('key'), 'attributes': {'text': value}});
-            BetterContent.ws.send(JSON.stringify({'type': 'labelMap', 'data': newLabelMap}));
+            BetterContent.ws.send(JSON.stringify({'type': 'ui', 'data': newLabelMap}));
         };
     }
 }
