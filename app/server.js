@@ -5,14 +5,18 @@ var BetterContentWebSocketServer= require('./controllers/BetterContentWSS');
 var port = process.env.PORT || 5000;
 
 var app = express();
+app.set('view engine', 'jade');
+app.set('views', __dirname + "/views");
+
 app.use(express.static('wwwroot'));
 
+app.get('/:bundleName', function(req, res){
+    var bundleName = req.params.bundleName;
+    res.render('appPage', { bundleName: bundleName });
+})
+
 var server = http.createServer(app);
-server.listen(port);
-console.log('http server listening on %d', port);
-
 var wss = new WebSocketServer({server: server});
-console.log('websocket server created');
-
 var betterContentWSS = new BetterContentWebSocketServer(wss);
-console.log('Better Content service started');
+server.listen(port);
+console.log('Better Content service started on port %d', port);

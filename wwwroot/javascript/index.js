@@ -24,8 +24,7 @@ BetterContent.App.prototype.onMessage = function(event){
 }
 
 BetterContent.App.prototype.onOpen = function() {
-    var tempAppName = 'temp';
-    this.ws.send(JSON.stringify({'type': 'register', 'data': {'app':'webClient', 'appName': tempAppName}}));
+    this.ws.send(JSON.stringify({'type': 'register', 'data': {'app':'webClient', 'appName': bundleName}}));
     this.keepAlive();
 }
 
