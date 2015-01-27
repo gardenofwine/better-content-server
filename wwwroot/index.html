@@ -1,7 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head></head>
+  <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+  </head>
   <body>
-    <h1>YOU NEED TO ENTER A BUNDLE NAME</h1>
+    <div class="container">
+      <div class="page-header">
+        <h1>BetterContent</h1>
+      </div>
+      <p class="lead">To view and edit you application's content, add your iOS application bundle identifier to the url, for example:</p><span class="hostname"></span>/com.example.apple-samplecode.AdaptiveCode<br><br><img src="images/bundleIdentifier.jpg">
+      <script>
+        document.getElementsByClassName('hostname')[0].innerHTML = window.location.origin;
+        
+      </script>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">
+          <text>Created by </text><a href="https://twitter.com/gardenofwine" target="_blank">@gardenofwine</a>. Feel free to contribute to the project in <a href="https://github.com/gardenofwine/better-content-server">Github</a>.
+        </p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -35,6 +35,7 @@ heroku open
 ## TODOS
 
  1. Support text areas (refactor UIView handling)
- 1. Refactor web client code
- 1. Support multiple dimesion iOS (iPads, iPhone5, iPhone6)
+ 1. Support multiple dimension iOS (iPads, iPhone5, iPhone6)
  1. Create an Heroku template for easy cloning.
+ 1. Change license to MIT
+ 1. Add all licenses of used libraries: bootstrap, node, jade, gulp, websockets (ws)
