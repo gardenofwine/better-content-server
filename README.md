@@ -15,7 +15,7 @@ __Work in progress.__
 - open your browser at http://localhost:5000
 
 ## The Native Client
-In order too see anything in the browser (after you run it) you need an iOS native app that communicates with the server. By default, an iOS app with [BetterContent](https://github.com/gardenofwine/better-content-client-ios) installed communicates with the [public server instance](bettercontent.herokuapp.com). If you want to run the native app against your local server, 
+In order too see anything in the browser (after you run it) you need an iOS native app that communicates with the server. By default, an iOS app with [BetterContent](https://github.com/gardenofwine/better-content-client-ios) installed communicates with the [public server instance](http://bettercontent.herokuapp.com). If you want to run the native app against your local server,
 edit the server host in your xcode project by editing  `BTCConstants.h` 
 
 ## Implementation details
@@ -37,5 +37,9 @@ heroku open
  1. Support text areas (refactor UIView handling)
  1. Support multiple dimension iOS (iPads, iPhone5, iPhone6)
  1. Create an Heroku template for easy cloning.
- 1. Change license to MIT
  1. Add all licenses of used libraries: bootstrap, node, jade, gulp, websockets (ws)
+
+# Copyright
+Copyright (c) 2014-2015 Benny Weingarten-Gabbay.
+
+MIT License. See (LICENSE)[LICENSE] for details.
