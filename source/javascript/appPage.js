@@ -65,7 +65,7 @@ BetterContent.Components.label = {
         var font = component.attributes.font;
 
         element.innerHTML = component.attributes.text;
-        element.setAttribute('class', 'element');
+        element.setAttribute('class', 'btcElement');
         element.setAttribute('contenteditable', true);
         element.setAttribute("key", component.key);
 
@@ -101,7 +101,7 @@ BetterContent.Components.image = {
         element.src = 'data:image/png;base64,' + component.attributes.image;
         var frame = component.attributes.frame;
 
-        element.setAttribute('class', 'element image');
+        element.setAttribute('class', 'btcElement image');
         element.setAttribute("key", component.key);
 
         element.style.top = frame.Y + 'px';

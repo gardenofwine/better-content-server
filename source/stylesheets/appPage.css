@@ -25,13 +25,13 @@ body {
     left:31px;
 }
 
-.element {
+.btcElement {
     position: absolute;
     overflow: hidden;
     text-overflow: clip;
     z-index: 100;
 }
 
-.element.image{
+.btcElement.image{
     z-index: 10;
 }
