@@ -8,14 +8,16 @@ html(lang="en")
             .page-header
                 h1 BetterContent
             p.lead To view and edit you application's content, add your iOS application bundle identifier to the url, for example:
-            span.hostname
-            | /com.example.apple-samplecode.AdaptiveCode
+            a.hostname-link
+                span.hostname
             br
             br
             img(src="images/bundleIdentifier.jpg")
 
             script.
-                document.getElementsByClassName('hostname')[0].innerHTML = window.location.origin;
+                var examplePath = window.location.origin + '/com.example.apple-samplecode.AdaptiveCode';
+                document.getElementsByClassName('hostname')[0].innerHTML = examplePath;
+                document.getElementsByClassName('hostname-link')[0].href = examplePath;
 
         footer.footer
             .container
