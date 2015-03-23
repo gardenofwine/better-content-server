@@ -42,4 +42,4 @@ heroku open
 # Copyright
 Copyright (c) 2014-2015 Benny Weingarten-Gabbay.
 
-MIT License. See (LICENSE)[LICENSE] for details.
+MIT License. See [LICENSE](LICENSE) for details.
