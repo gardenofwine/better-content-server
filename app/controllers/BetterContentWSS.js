@@ -39,21 +39,25 @@ function BetterContentWSS(webSocketServer) {
     }
 
     function webSocketClosed(ws) {
+        delete nativeSockets[ws.appName];
     }
 
     function clientMessaged(ws, message) {
         if (ws.appType == NATIVE_APP) {
-            console.log('received message from native ' + JSON.stringify(message));
+//            console.log('received message from native ' + JSON.stringify(message));
             lastNativeMessages[ws.appName] = message;
             if(webClientSockets[ws.appName]){
                 webClientSockets[ws.appName].send(JSON.stringify(message));
             }
         }
         if (ws.appType == WEB_CLIENT) {
-            console.log('received message from webClient ' + JSON.stringify(message));
+//            console.log('received message from webClient ' + JSON.stringify(message));
             nativeSockets[ws.appName].send(JSON.stringify(message));
         }
     }
+
+    // exports    
+    this.nativeSockets = nativeSockets;
 }
 
 module.exports = BetterContentWSS;
