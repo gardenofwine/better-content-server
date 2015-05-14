@@ -44,7 +44,7 @@ function BetterContentWSS(webSocketServer) {
 
     function clientMessaged(ws, message) {
         if (ws.appType == NATIVE_APP) {
-//            console.log('received message from native ' + JSON.stringify(message));
+            console.log('received message from native ' + JSON.stringify(message));
             lastNativeMessages[ws.appName] = message;
             if(webClientSockets[ws.appName]){
                 webClientSockets[ws.appName].send(JSON.stringify(message));

@@ -18,8 +18,36 @@ BetterContent.App.prototype.onMessage = function(event){
         var componentClass = nativeContent[i].attributes.class;
         var componentHandler = BetterContent.Components[componentClass];
         if (typeof componentHandler !== "undefined"){
-            componentHandler.draw(nativeContent[i], elementsDiv);
+            var domElement;
+            if (typeof componentHandler.element == 'function') {
+                domElement = componentHandler.element();
+            } else {
+                domElement = document.createElement('div');
+            }
+            var element = createCommonViewElement(domElement, nativeContent[i], elementsDiv)
+            componentHandler.draw(nativeContent[i], element);
         }
+    }
+    
+    function createCommonViewElement(element, component, elementsDiv){
+        var frame = component.attributes.frame;
+        var font = component.attributes.font;
+
+        element.setAttribute('class', 'btcElement');
+        element.setAttribute("key", component.key);
+
+        element.style.top = frame.Y + 'px';
+        element.style.left = frame.X + 'px';
+        element.style.width = frame.Width + 'px';
+        element.style.height = frame.Height + 'px';
+        element.style.zIndex = component.attributes['z-index'];
+
+        if (component.attributes['backgroundColor']) {
+            element.style.backgroundColor = "#" + component.attributes['backgroundColor'];
+        }
+
+        elementsDiv.appendChild(element);
+        return element;
     }
 }
 
@@ -56,28 +84,16 @@ BetterContent.App.prototype.setupWebSocket = function(){
 BetterContent.Components = {}
 
 BetterContent.Components.label = {
-    draw: function(component, elementsDiv){
+    draw: function(component, element){
         if (component.attributes.hidden){
             return;
         }
-        var element = document.createElement('div');
-        var frame = component.attributes.frame;
         var font = component.attributes.font;
 
         element.innerHTML = component.attributes.text;
-        element.setAttribute('class', 'btcElement');
         element.setAttribute('contenteditable', true);
-        element.setAttribute("key", component.key);
-
-        element.style.top = frame.Y + 'px';
-        element.style.left = frame.X + 'px';
-        element.style.width = frame.Width + 'px';
-        element.style.height = frame.Height + 'px';
         element.style.fontSize = (font.pointSize * 0.85) + 'px';
         element.style.color = font.color;
-
-        elementsDiv.appendChild(element);
-
 
         element.addEventListener("input", function (event) {
             sendLabel(event.srcElement);
@@ -93,24 +109,25 @@ BetterContent.Components.label = {
 }
 
 BetterContent.Components.image = {
-    draw: function (component, elementsDiv) {
+    draw: function (component, element) {
         if (component.attributes.hidden || component.attributes.image === ""){
             return;
         }
-        var element = new Image();
         element.src = 'data:image/png;base64,' + component.attributes.image;
-        var frame = component.attributes.frame;
-
         element.setAttribute('class', 'btcElement image');
         element.setAttribute("key", component.key);
-
-        element.style.top = frame.Y + 'px';
-        element.style.left = frame.X + 'px';
-        element.style.width = frame.Width + 'px';
-        element.style.height = frame.Height + 'px';
-        elementsDiv.appendChild(element);
+    },
+    
+    element: function(){
+        return new Image();       
     }
 }
+
+BetterContent.Components.view = {
+    draw: function (component, element) {
+    }
+}
+
 
 var app = new BetterContent.App();
 app.setupWebSocket();

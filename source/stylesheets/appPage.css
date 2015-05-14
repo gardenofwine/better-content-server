@@ -29,9 +29,7 @@ body {
     position: absolute;
     overflow: hidden;
     text-overflow: clip;
-    z-index: 100;
 }
 
 .btcElement.image{
-    z-index: 10;
 }
