@@ -10,4 +10,5 @@ npm-install-*.sh
 .idea/**
 .DS_Store
 
-
+#Visual studio
+.settings/**

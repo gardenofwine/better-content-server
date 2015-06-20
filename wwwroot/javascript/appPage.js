@@ -34,6 +34,7 @@ BetterContent.App.prototype.onMessage = function(event){
         var font = component.attributes.font;
 
         element.setAttribute('class', 'btcElement');
+        element.setAttribute('native-class',component.attributes['native-class']);
         element.setAttribute("key", component.key);
 
         element.style.top = frame.Y + 'px';
@@ -43,7 +44,11 @@ BetterContent.App.prototype.onMessage = function(event){
         element.style.zIndex = component.attributes['z-index'];
 
         if (component.attributes['backgroundColor']) {
-            element.style.backgroundColor = "#" + component.attributes['backgroundColor'];
+            var r = component.attributes['backgroundColor']['r'];
+            var g = component.attributes['backgroundColor']['g'];
+            var b = component.attributes['backgroundColor']['b'];
+            var a = component.attributes['backgroundColor']['a'];
+            element.style.backgroundColor = "rgba(" + r + ", " + g + ", " + b + ", " + a +")";
         }
 
         elementsDiv.appendChild(element);
