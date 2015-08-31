@@ -52,7 +52,10 @@ function BetterContentWSS(webSocketServer) {
         }
         if (ws.appType == WEB_CLIENT) {
 //            console.log('received message from webClient ' + JSON.stringify(message));
-            nativeSockets[ws.appName].send(JSON.stringify(message));
+            console.log("**== mnative sokcet =" + nativeSockets[ws.appName]);
+            if (nativeSockets[ws.appName]) {
+                nativeSockets[ws.appName].send(JSON.stringify(message));
+            }
         }
     }
 

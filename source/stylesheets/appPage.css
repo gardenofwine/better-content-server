@@ -8,8 +8,8 @@ body {
 }
 
 #iphoneImage{
-    height: 748px;
-    width: 382px;
+    height: 751px;
+    width: 468px;
     position: absolute;
     top:0px;
     left:0px;
@@ -17,12 +17,11 @@ body {
 
 #nativeContent{
     overflow: hidden;
-    height: 480px;
-    width: 320px;
-    border: solid;
+    height: 667px;
+    width: 375px;
     position: absolute;
-    top:131px;
-    left:31px;
+    top:117px;
+    left:46px;
 }
 
 .btcElement {
