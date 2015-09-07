@@ -40,6 +40,7 @@ function BetterContentWSS(webSocketServer) {
 
     function webSocketClosed(ws) {
         delete nativeSockets[ws.appName];
+        delete webClientSockets[ws.appName];
     }
 
     function clientMessaged(ws, message) {
